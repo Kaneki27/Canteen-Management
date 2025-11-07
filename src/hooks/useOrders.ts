@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import type { Order } from '@/lib/types';
-import { db } from '@/lib/firebase';
+import { db, isFirebaseConfigured } from '@/lib/firebase';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 export function useOrders() {
@@ -11,10 +11,13 @@ export function useOrders() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!db) {
+    if (!isFirebaseConfigured() || !db) {
+        console.log('Firebase not configured, using empty orders list');
+        setOrders([]);
         setLoading(false);
         return;
     }
+    
     const q = query(collection(db, 'orders'), orderBy('date', 'desc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const ordersData: Order[] = [];
@@ -25,6 +28,7 @@ export function useOrders() {
       setLoading(false);
     }, (error) => {
         console.error("Error fetching orders:", error);
+        setOrders([]);
         setLoading(false);
     });
 

@@ -2,99 +2,387 @@
   "placeholderImages": [
     {
       "id": "1",
-      "description": "A classic burger with fresh vegetables.",
-      "imageUrl": "https://images.unsplash.com/photo-1601391555692-d6c499730eee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxidXJnZXIlMjBiZWVmfGVufDB8fHx8MTc1OTY1MTc4OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "burger beef"
+      "description": "Classic beef burger with fresh vegetables and juicy patty.",
+      "imageUrl": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&auto=format&fit=crop",
+      "imageHint": "burger"
     },
     {
       "id": "2",
-      "description": "Crispy and golden french fries.",
-      "imageUrl": "https://images.unsplash.com/photo-1606755456206-b25206cde27e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmcmVuY2glMjBmcmllc3xlbnwwfHx8fDE3NTk2MTQ3MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "french fries"
+      "description": "Aromatic chicken biryani with basmati rice and spices.",
+      "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop",
+      "imageHint": "biryani"
     },
     {
       "id": "3",
-      "description": "A cheesy margherita pizza.",
-      "imageUrl": "https://images.unsplash.com/photo-1692737580558-b9dfdac5599c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwaXp6YSUyMGNoZWVzZXxlbnwwfHx8fDE3NTk1NzkwNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "pizza cheese"
+      "description": "Cheesy margherita pizza with fresh basil and mozzarella.",
+      "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop",
+      "imageHint": "pizza"
     },
     {
       "id": "4",
-      "description": "A healthy garden salad with fresh greens.",
-      "imageUrl": "https://images.unsplash.com/photo-1620745799892-2132a65f4295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2FsYWQlMjBncmVlbnN8ZW58MHx8fHwxNzU5NTk1MTY5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "salad greens"
+      "description": "Creamy paneer butter masala with soft naan bread.",
+      "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop",
+      "imageHint": "paneer"
     },
     {
       "id": "5",
-      "description": "A refreshing glass of cola with ice.",
-      "imageUrl": "https://images.unsplash.com/photo-1610873167013-2dd675d30ef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzb2RhJTIwZHJpbmt8ZW58MHx8fHwxNzU5NTk1MDQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "soda drink"
+      "description": "Hearty vegetable sandwich with fresh garden ingredients.",
+      "imageUrl": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800&auto=format&fit=crop",
+      "imageHint": "sandwich"
     },
     {
       "id": "6",
-      "description": "Creamy chocolate milkshake.",
-      "imageUrl": "https://images.unsplash.com/photo-1591864384134-8a21ffb51cb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaG9jb2xhdGUlMjBtaWxrc2hha2V8ZW58MHx8fHwxNzU5NjAyNTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "chocolate milkshake"
+      "description": "Grilled chicken tikka with aromatic mint chutney.",
+      "imageUrl": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&auto=format&fit=crop",
+      "imageHint": "tikka"
     },
     {
       "id": "7",
-      "description": "A hearty vegetable sandwich.",
-      "imageUrl": "https://images.unsplash.com/photo-1581339742930-ce01dd18da5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx2ZWdldGFibGUlMjBzYW5kd2ljaHxlbnwwfHx8fDE3NTk2MDY3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "vegetable sandwich"
+      "description": "Spicy chicken curry with fragrant rice.",
+      "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop",
+      "imageHint": "curry"
     },
     {
       "id": "8",
-      "description": "A warm bowl of tomato soup.",
-      "imageUrl": "https://images.unsplash.com/photo-1693762894461-8305cd26ba9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0b21hdG8lMjBzb3VwfGVufDB8fHx8MTc1OTU5MzEwNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tomato soup"
+      "description": "Fresh fish curry with creamy coconut milk.",
+      "imageUrl": "https://images.unsplash.com/photo-1626074353765-517a7073531e?w=800&auto=format&fit=crop",
+      "imageHint": "fish"
     },
     {
       "id": "9",
-      "description": "Aromatic chicken biryani.",
-      "imageUrl": "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=2070&auto=format&fit=crop",
-      "imageHint": "chicken biryani"
+      "description": "Butter chicken with tender pieces in rich tomato gravy.",
+      "imageUrl": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&auto=format&fit=crop",
+      "imageHint": "butter chicken"
     },
     {
       "id": "10",
-      "description": "Creamy paneer butter masala.",
-      "imageUrl": "https://images.unsplash.com/photo-1668665789318-c689c8b36a43?q=80&w=1935&auto=format&fit=crop",
-      "imageHint": "paneer curry"
+      "description": "Dal makhani with kidney beans and cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&auto=format&fit=crop",
+      "imageHint": "dal"
     },
     {
       "id": "11",
-      "description": "Crispy onion rings.",
-      "imageUrl": "https://images.unsplash.com/photo-1639586551131-29a43af56c32?q=80&w=1974&auto=format&fit=crop",
-      "imageHint": "onion rings"
+      "description": "Grilled salmon with lemon butter sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800&auto=format&fit=crop",
+      "imageHint": "salmon"
     },
     {
       "id": "12",
-      "description": "Buttery garlic bread.",
-      "imageUrl": "https://images.unsplash.com/photo-1622327595628-a4d15c544d65?q=80&w=1964&auto=format&fit=crop",
-      "imageHint": "garlic bread"
+      "description": "Pasta carbonara with bacon and parmesan.",
+      "imageUrl": "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&auto=format&fit=crop",
+      "imageHint": "pasta"
     },
     {
       "id": "13",
-      "description": "Refreshing fresh lime soda.",
-      "imageUrl": "https://images.unsplash.com/photo-1543634112-9a6a438da894?q=80&w=1949&auto=format&fit=crop",
-      "imageHint": "lime soda"
+      "description": "Chicken fried rice with vegetables and egg.",
+      "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&auto=format&fit=crop",
+      "imageHint": "fried rice"
     },
     {
       "id": "14",
-      "description": "Chilled iced tea.",
-      "imageUrl": "https://images.unsplash.com/photo-1556679343-cde3201aa32a?q=80&w=1974&auto=format&fit=crop",
-      "imageHint": "iced tea"
+      "description": "Beef tacos with salsa and guacamole.",
+      "imageUrl": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&auto=format&fit=crop",
+      "imageHint": "tacos"
     },
     {
       "id": "15",
-      "description": "Warm brownie with ice cream.",
-      "imageUrl": "https://images.unsplash.com/photo-1610396434317-5a6b01b67f18?q=80&w=1974&auto=format&fit=crop",
-      "imageHint": "brownie ice-cream"
+      "description": "Chicken noodles with vegetables in soy sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&auto=format&fit=crop",
+      "imageHint": "noodles"
     },
     {
       "id": "16",
-      "description": "Sweet gulab jamun.",
-      "imageUrl": "https://images.unsplash.com/photo-1670461516014-93c66f9175a0?q=80&w=2070&auto=format&fit=crop",
+      "description": "Lamb kebabs with yogurt sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&auto=format&fit=crop",
+      "imageHint": "kebab"
+    },
+    {
+      "id": "17",
+      "description": "Crispy and golden french fries with ketchup.",
+      "imageUrl": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800&auto=format&fit=crop",
+      "imageHint": "fries"
+    },
+    {
+      "id": "18",
+      "description": "Crispy onion rings with spicy mayo dip.",
+      "imageUrl": "https://images.unsplash.com/photo-1619221882004-6318f5d68922?w=800&auto=format&fit=crop",
+      "imageHint": "onion rings"
+    },
+    {
+      "id": "19",
+      "description": "Buttery garlic bread with herbs and cheese.",
+      "imageUrl": "https://images.unsplash.com/photo-1573140401552-388e4c8d6d5c?w=800&auto=format&fit=crop",
+      "imageHint": "garlic bread"
+    },
+    {
+      "id": "20",
+      "description": "Healthy garden salad with mixed greens and vinaigrette.",
+      "imageUrl": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&auto=format&fit=crop",
+      "imageHint": "salad"
+    },
+    {
+      "id": "21",
+      "description": "Creamy mashed potatoes with butter and herbs.",
+      "imageUrl": "https://images.unsplash.com/photo-1604912699362-8f32df19853f?w=800&auto=format&fit=crop",
+      "imageHint": "mashed potatoes"
+    },
+    {
+      "id": "22",
+      "description": "Spicy chicken wings with barbecue glaze.",
+      "imageUrl": "https://images.unsplash.com/photo-1608039755401-742074f0548d?w=800&auto=format&fit=crop",
+      "imageHint": "wings"
+    },
+    {
+      "id": "23",
+      "description": "Fresh vegetable spring rolls with sweet chili sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1626776876729-bab4cffe4c34?w=800&auto=format&fit=crop",
+      "imageHint": "spring rolls"
+    },
+    {
+      "id": "24",
+      "description": "Warm bowl of tomato soup with croutons.",
+      "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop",
+      "imageHint": "soup"
+    },
+    {
+      "id": "25",
+      "description": "Corn on the cob with butter and spices.",
+      "imageUrl": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=800&auto=format&fit=crop",
+      "imageHint": "corn"
+    },
+    {
+      "id": "26",
+      "description": "Cheese nachos with jalapenos and sour cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=800&auto=format&fit=crop",
+      "imageHint": "nachos"
+    },
+    {
+      "id": "27",
+      "description": "Steamed broccoli with garlic butter.",
+      "imageUrl": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=800&auto=format&fit=crop",
+      "imageHint": "broccoli"
+    },
+    {
+      "id": "28",
+      "description": "Coleslaw with creamy dressing.",
+      "imageUrl": "https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=800&auto=format&fit=crop",
+      "imageHint": "coleslaw"
+    },
+    {
+      "id": "29",
+      "description": "Baked beans in tomato sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1587387119725-8fbb8b4fa4e7?w=800&auto=format&fit=crop",
+      "imageHint": "beans"
+    },
+    {
+      "id": "30",
+      "description": "Grilled vegetables with balsamic glaze.",
+      "imageUrl": "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=800&auto=format&fit=crop",
+      "imageHint": "grilled vegetables"
+    },
+    {
+      "id": "31",
+      "description": "Mac and cheese with crispy breadcrumb topping.",
+      "imageUrl": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=800&auto=format&fit=crop",
+      "imageHint": "mac and cheese"
+    },
+    {
+      "id": "32",
+      "description": "Sweet potato fries with chipotle mayo.",
+      "imageUrl": "https://images.unsplash.com/photo-1619870276530-cfb8d8ac7451?w=800&auto=format&fit=crop",
+      "imageHint": "sweet potato"
+    },
+    {
+      "id": "33",
+      "description": "Refreshing cola with ice and lemon.",
+      "imageUrl": "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=800&auto=format&fit=crop",
+      "imageHint": "cola"
+    },
+    {
+      "id": "34",
+      "description": "Creamy chocolate milkshake with whipped cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&auto=format&fit=crop",
+      "imageHint": "milkshake"
+    },
+    {
+      "id": "35",
+      "description": "Fresh lime soda with mint leaves and ice.",
+      "imageUrl": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&auto=format&fit=crop",
+      "imageHint": "lime soda"
+    },
+    {
+      "id": "36",
+      "description": "Chilled iced tea with lemon slice.",
+      "imageUrl": "https://images.unsplash.com/photo-1499638309848-e9968540da83?w=800&auto=format&fit=crop",
+      "imageHint": "iced tea"
+    },
+    {
+      "id": "37",
+      "description": "Fresh orange juice with pulp.",
+      "imageUrl": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&auto=format&fit=crop",
+      "imageHint": "orange juice"
+    },
+    {
+      "id": "38",
+      "description": "Strawberry smoothie with fresh berries.",
+      "imageUrl": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=800&auto=format&fit=crop",
+      "imageHint": "smoothie"
+    },
+    {
+      "id": "39",
+      "description": "Hot coffee with milk and sugar.",
+      "imageUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&auto=format&fit=crop",
+      "imageHint": "coffee"
+    },
+    {
+      "id": "40",
+      "description": "Fresh coconut water served chilled.",
+      "imageUrl": "https://images.unsplash.com/photo-1584318109218-c6e948a3e4c3?w=800&auto=format&fit=crop",
+      "imageHint": "coconut water"
+    },
+    {
+      "id": "41",
+      "description": "Mango lassi with cardamom.",
+      "imageUrl": "https://images.unsplash.com/photo-1563016876-f0841a0a9b52?w=800&auto=format&fit=crop",
+      "imageHint": "lassi"
+    },
+    {
+      "id": "42",
+      "description": "Green tea with honey.",
+      "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&auto=format&fit=crop",
+      "imageHint": "green tea"
+    },
+    {
+      "id": "43",
+      "description": "Fresh apple juice without sugar.",
+      "imageUrl": "https://images.unsplash.com/photo-1560780552-ba54683cb263?w=800&auto=format&fit=crop",
+      "imageHint": "apple juice"
+    },
+    {
+      "id": "44",
+      "description": "Vanilla milkshake with ice cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1578849278609-79744d8a5ebd?w=800&auto=format&fit=crop",
+      "imageHint": "vanilla shake"
+    },
+    {
+      "id": "45",
+      "description": "Lemonade with fresh mint.",
+      "imageUrl": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f8c?w=800&auto=format&fit=crop",
+      "imageHint": "lemonade"
+    },
+    {
+      "id": "46",
+      "description": "Masala chai with ginger and spices.",
+      "imageUrl": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop",
+      "imageHint": "chai"
+    },
+    {
+      "id": "47",
+      "description": "Cold brew coffee with ice.",
+      "imageUrl": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&auto=format&fit=crop",
+      "imageHint": "cold brew"
+    },
+    {
+      "id": "48",
+      "description": "Watermelon juice freshly blended.",
+      "imageUrl": "https://images.unsplash.com/photo-1589217157232-464b505b197f?w=800&auto=format&fit=crop",
+      "imageHint": "watermelon juice"
+    },
+    {
+      "id": "49",
+      "description": "Warm brownie with vanilla ice cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&auto=format&fit=crop",
+      "imageHint": "brownie"
+    },
+    {
+      "id": "50",
+      "description": "Sweet gulab jamun in rose syrup.",
+      "imageUrl": "https://images.unsplash.com/photo-1601638334569-b65e98815fb7?w=800&auto=format&fit=crop",
       "imageHint": "gulab jamun"
+    },
+    {
+      "id": "51",
+      "description": "Creamy chocolate cake with frosting.",
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&auto=format&fit=crop",
+      "imageHint": "chocolate cake"
+    },
+    {
+      "id": "52",
+      "description": "Fresh fruit salad with honey dressing.",
+      "imageUrl": "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?w=800&auto=format&fit=crop",
+      "imageHint": "fruit salad"
+    },
+    {
+      "id": "53",
+      "description": "Traditional rasgulla in sugar syrup.",
+      "imageUrl": "https://images.unsplash.com/photo-1600353068440-6361ef3a86e8?w=800&auto=format&fit=crop",
+      "imageHint": "rasgulla"
+    },
+    {
+      "id": "54",
+      "description": "Ice cream sundae with chocolate sauce and nuts.",
+      "imageUrl": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&auto=format&fit=crop",
+      "imageHint": "sundae"
+    },
+    {
+      "id": "55",
+      "description": "Sweet mango kulfi with pistachios.",
+      "imageUrl": "https://images.unsplash.com/photo-1596040006197-cded64c596d7?w=800&auto=format&fit=crop",
+      "imageHint": "kulfi"
+    },
+    {
+      "id": "56",
+      "description": "Fresh strawberry cheesecake slice.",
+      "imageUrl": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&auto=format&fit=crop",
+      "imageHint": "cheesecake"
+    },
+    {
+      "id": "57",
+      "description": "Tiramisu with coffee and mascarpone.",
+      "imageUrl": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&auto=format&fit=crop",
+      "imageHint": "tiramisu"
+    },
+    {
+      "id": "58",
+      "description": "Apple pie with vanilla ice cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=800&auto=format&fit=crop",
+      "imageHint": "apple pie"
+    },
+    {
+      "id": "59",
+      "description": "Chocolate chip cookies fresh from oven.",
+      "imageUrl": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&auto=format&fit=crop",
+      "imageHint": "cookies"
+    },
+    {
+      "id": "60",
+      "description": "Creamy panna cotta with berry compote.",
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&auto=format&fit=crop",
+      "imageHint": "panna cotta"
+    },
+    {
+      "id": "61",
+      "description": "Jalebi crispy and sweet in syrup.",
+      "imageUrl": "https://images.unsplash.com/photo-1600353068440-6361ef3a86e8?w=800&auto=format&fit=crop",
+      "imageHint": "jalebi"
+    },
+    {
+      "id": "62",
+      "description": "Carrot cake with cream cheese frosting.",
+      "imageUrl": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&auto=format&fit=crop",
+      "imageHint": "carrot cake"
+    },
+    {
+      "id": "63",
+      "description": "Vanilla custard with caramel sauce.",
+      "imageUrl": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800&auto=format&fit=crop",
+      "imageHint": "custard"
+    },
+    {
+      "id": "64",
+      "description": "Chocolate mousse with whipped cream.",
+      "imageUrl": "https://images.unsplash.com/photo-1541599468348-e96984315921?w=800&auto=format&fit=crop",
+      "imageHint": "mousse"
     }
   ]
 }

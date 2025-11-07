@@ -1,17 +1,31 @@
 'use client';
 
 import Image from 'next/image';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles } from 'lucide-react';
 
 import type { MenuItem } from '@/lib/types';
 import { useCart } from '@/hooks/use-cart';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 
 interface MenuItemCardProps {
   item: MenuItem;
 }
+
+const getDietaryIcon = (type?: string) => {
+  switch (type) {
+    case 'veg':
+      return <div className="w-4 h-4 border-2 border-green-600 rounded-sm flex items-center justify-center"><div className="w-2 h-2 bg-green-600 rounded-full"></div></div>;
+    case 'non-veg':
+      return <div className="w-4 h-4 border-2 border-red-600 rounded-sm flex items-center justify-center"><div className="w-2 h-2 bg-red-600 rounded-full"></div></div>;
+    case 'vegan':
+      return <span className="text-green-600">🌱</span>;
+    default:
+      return null;
+  }
+};
 
 export function MenuItemCard({ item }: MenuItemCardProps) {
   const { addItem } = useCart();
@@ -36,6 +50,15 @@ export function MenuItemCard({ item }: MenuItemCardProps) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
              />
+             {item.isPopular && (
+               <Badge className="absolute top-2 right-2 bg-yellow-500 hover:bg-yellow-600 text-white">
+                 <Sparkles className="h-3 w-3 mr-1" />
+                 Bestseller
+               </Badge>
+             )}
+             <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded-full p-1">
+               {getDietaryIcon(item.dietaryType)}
+             </div>
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow">

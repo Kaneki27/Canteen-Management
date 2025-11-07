@@ -20,6 +20,16 @@ export function Header() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
             <Button variant="ghost" asChild>
+              <Link href="/">
+                Home
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link href="/menu">
+                Menu
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
               <Link href="/admin">
                 <Shield className="h-4 w-4 mr-2" />
                 Admin

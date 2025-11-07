@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import type { Discount } from '@/lib/types';
-import { db } from '@/lib/firebase';
+import { db, isFirebaseConfigured } from '@/lib/firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 
 export function useDiscounts() {
@@ -11,10 +11,13 @@ export function useDiscounts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!db) {
+    if (!isFirebaseConfigured() || !db) {
+        console.log('Firebase not configured, using empty discounts list');
+        setDiscounts([]);
         setLoading(false);
         return;
     }
+    
     const q = query(collection(db, 'discounts'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const discountsData: Discount[] = [];
@@ -25,6 +28,7 @@ export function useDiscounts() {
       setLoading(false);
     }, (error) => {
         console.error("Error fetching discounts:", error);
+        setDiscounts([]);
         setLoading(false);
     });
 

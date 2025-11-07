@@ -1,4 +1,5 @@
 export type Category = 'Main Course' | 'Sides' | 'Beverages' | 'Desserts';
+export type DietaryType = 'veg' | 'non-veg' | 'vegan';
 
 export interface MenuItem {
   id: string;
@@ -7,6 +8,9 @@ export interface MenuItem {
   price: number;
   description: string;
   imageUrl: string;
+  dietaryType?: DietaryType;
+  isPopular?: boolean;
+  createdAt?: number;
 }
 
 export interface CartItem extends MenuItem {
