@@ -27,27 +27,27 @@ const PeakHoursChart = dynamic(() => import('@/components/admin/PeakHoursChart')
 });
 
 export default function AdminDashboardPage() {
-    const { orders, loading: ordersLoading } = useOrders();
-    const { items: menuItems, loading: menuLoading } = useMenuItems();
-    const { discounts, loading: discountsLoading } = useDiscounts();
+  const { orders, loading: ordersLoading } = useOrders();
+  const { items: menuItems, loading: menuLoading } = useMenuItems();
+  const { discounts, loading: discountsLoading } = useDiscounts();
 
-    const completedOrders = useMemo(() => 
-      orders.filter(o => o.status === 'Completed'),
-      [orders]
-    );
+  const completedOrders = useMemo(() =>
+    orders.filter(o => o.status === 'Ready'),
+    [orders]
+  );
 
-    const totalRevenue = useMemo(() => 
-      completedOrders.reduce((sum, order) => sum + order.total, 0),
-      [completedOrders]
-    );
+  const totalRevenue = useMemo(() =>
+    completedOrders.reduce((sum, order) => sum + order.total, 0),
+    [completedOrders]
+  );
 
-    const averageOrderValue = useMemo(() => 
-      completedOrders.length > 0 ? totalRevenue / completedOrders.length : 0,
-      [totalRevenue, completedOrders.length]
-    );
+  const averageOrderValue = useMemo(() =>
+    completedOrders.length > 0 ? totalRevenue / completedOrders.length : 0,
+    [totalRevenue, completedOrders.length]
+  );
 
-    const totalOrders = orders.length;
-    const pendingOrders = orders.filter(o => o.status === 'Pending').length;
+  const totalOrders = orders.length;
+  const pendingOrders = orders.filter(o => o.status === 'In Queue').length;
 
   return (
     <div className="w-full space-y-6">
@@ -61,26 +61,26 @@ export default function AdminDashboardPage() {
 
       {/* Key Metrics */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <StatCard 
-          title="Total Revenue" 
+        <StatCard
+          title="Total Revenue"
           value={ordersLoading ? "..." : `₹${totalRevenue.toFixed(2)}`}
           description={`${completedOrders.length} completed orders`}
           icon={() => <span className="font-bold text-muted-foreground">₹</span>}
         />
-        <StatCard 
-          title="Total Orders" 
+        <StatCard
+          title="Total Orders"
           value={ordersLoading ? "..." : `${totalOrders}`}
           description={`${pendingOrders} pending orders`}
           icon={ClipboardList}
         />
-        <StatCard 
-          title="Avg Order Value" 
+        <StatCard
+          title="Avg Order Value"
           value={ordersLoading ? "..." : `₹${averageOrderValue.toFixed(2)}`}
           description="Per completed order"
           icon={TrendingUp}
         />
-        <StatCard 
-          title="Menu Items" 
+        <StatCard
+          title="Menu Items"
           value={menuLoading ? "..." : `${menuItems.length}`}
           description={`${menuItems.filter(i => i.isPopular).length} bestsellers`}
           icon={Utensils}
@@ -110,7 +110,7 @@ export default function AdminDashboardPage() {
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge 
+                      <Badge
                         variant={order.status === 'Completed' ? 'default' : order.status === 'Pending' ? 'secondary' : 'destructive'}
                       >
                         {order.status}
@@ -153,7 +153,7 @@ export default function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {ordersLoading ? "..." : totalOrders > 0 
+              {ordersLoading ? "..." : totalOrders > 0
                 ? `${((completedOrders.length / totalOrders) * 100).toFixed(1)}%`
                 : "0%"
               }
@@ -170,7 +170,7 @@ export default function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {ordersLoading ? "..." : 
+              {ordersLoading ? "..." :
                 `${orders.filter(o => o.discountApplied).length}`
               }
             </div>

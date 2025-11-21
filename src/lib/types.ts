@@ -26,9 +26,11 @@ export interface Discount {
 
 export interface Order {
   id: string;
+  token: string; // Daily-reset token (T001, T002...)
   items: CartItem[];
   total: number;
   discountApplied: Discount | null;
   date: number; // Using timestamp for Firestore
-  status: 'Pending' | 'Completed' | 'Cancelled';
+  status: 'In Queue' | 'Cooking' | 'Ready';
+  paymentMethod: 'Online' | 'Pay at Counter';
 }

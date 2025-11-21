@@ -27,14 +27,14 @@ export async function deleteMenuItem(id: string) {
 
 // Image Upload
 export async function uploadImage(file: File): Promise<string> {
-    if (!isFirebaseConfigured() || !storage) {
-        console.log('Firebase not configured, using placeholder image URL');
-        return 'https://placehold.co/400x300?text=Image+Upload+Disabled';
-    }
-    const storageRef = ref(storage, `menu_images/${Date.now()}_${file.name}`);
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
-    return downloadURL;
+  if (!isFirebaseConfigured() || !storage) {
+    console.log('Firebase not configured, using placeholder image URL');
+    return 'https://placehold.co/400x300?text=Image+Upload+Disabled';
+  }
+  const storageRef = ref(storage, `menu_images/${Date.now()}_${file.name}`);
+  await uploadBytes(storageRef, file);
+  const downloadURL = await getDownloadURL(storageRef);
+  return downloadURL;
 }
 
 // Discounts
@@ -56,30 +56,36 @@ export async function deleteDiscount(id: string) {
 }
 
 export async function updateDiscountStatus(id: string, isActive: boolean) {
-    if (!isFirebaseConfigured() || !db) {
-      console.log('Firebase not configured, skipping discount status update');
-      return;
-    }
-    const docRef = doc(db, 'discounts', id);
-    await updateDoc(docRef, { isActive });
+  if (!isFirebaseConfigured() || !db) {
+    console.log('Firebase not configured, skipping discount status update');
+    return;
+  }
+  const docRef = doc(db, 'discounts', id);
+  await updateDoc(docRef, { isActive });
 }
 
 // Orders
 export async function saveOrder(order: Order, id: string) {
-    if (!isFirebaseConfigured() || !db) {
-        console.log('Firebase not configured, skipping order save');
-        return;
-    }
-    const docRef = doc(db, 'orders', id);
-    await setDoc(docRef, order);
-    console.log('Order saved to Firebase:', id);
+  if (!isFirebaseConfigured() || !db) {
+    console.log('Firebase not configured, saving order to localStorage');
+    // Use localStorage as fallback
+    const { saveOrderToLocalStorage } = await import('./localStorage');
+    saveOrderToLocalStorage(order);
+    return;
+  }
+  const docRef = doc(db, 'orders', id);
+  await setDoc(docRef, order);
+  console.log('Order saved to Firebase:', id);
 }
 
 export async function updateOrderStatus(id: string, status: Order['status']) {
-    if (!isFirebaseConfigured() || !db) {
-        console.log('Firebase not configured, skipping order status update');
-        return;
-    }
-    const docRef = doc(db, 'orders', id);
-    await updateDoc(docRef, { status });
+  if (!isFirebaseConfigured() || !db) {
+    console.log('Firebase not configured, updating order status in localStorage');
+    // Use localStorage as fallback
+    const { updateOrderStatusInLocalStorage } = await import('./localStorage');
+    updateOrderStatusInLocalStorage(id, status);
+    return;
+  }
+  const docRef = doc(db, 'orders', id);
+  await updateDoc(docRef, { status });
 }

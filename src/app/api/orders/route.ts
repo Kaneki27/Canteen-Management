@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { saveOrder } from '@/lib/firestore';
 import type { Order } from '@/lib/types';
+import { generateDailyToken } from '@/lib/tokenGenerator';
 
 // Simple order ID generation without AI dependency
 function generateOrderId(): string {
@@ -12,25 +13,29 @@ function generateOrderId(): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { cartItems, total, discount } = body;
+    const { cartItems, total, discount, paymentMethod = 'Online' } = body;
 
-    console.log('API: Placing order with:', { cartItems, total, discount });
+    console.log('API: Placing order with:', { cartItems, total, discount, paymentMethod });
 
-    // Generate order ID
+    // Generate order ID and token
     const orderId = generateOrderId();
+    const token = generateDailyToken();
     console.log('API: Generated order ID:', orderId);
+    console.log('API: Generated token:', token);
 
     // Create order object
     const order: Order = {
       id: orderId,
+      token: token,
       items: cartItems,
       total: total,
       discountApplied: discount,
       date: Date.now(),
-      status: 'Pending' as const
+      status: 'In Queue' as const,
+      paymentMethod: paymentMethod
     };
 
-    console.log('API: Order created successfully:', orderId);
+    console.log('API: Order created successfully:', orderId, 'Token:', token, 'Payment:', paymentMethod);
 
     // Try to save to Firebase (will gracefully handle if not configured)
     try {
@@ -40,17 +45,18 @@ export async function POST(request: Request) {
       // Continue anyway - payment can still proceed
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       orderId: orderId,
+      token: token,
       order: order
     });
 
   } catch (error) {
     console.error('API: Order placement failed:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: 'Failed to place order',
         details: error instanceof Error ? error.message : 'Unknown error'
       },

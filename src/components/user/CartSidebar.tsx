@@ -47,6 +47,52 @@ export function CartSidebar() {
     setPaymentDialogOpen(true);
   }
 
+  const handlePayAtCounter = async () => {
+    try {
+      // Create order with "Pay at Counter" payment method
+      const orderResponse = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cartItems: items,
+          total: total,
+          discount: appliedDiscount,
+          paymentMethod: 'Pay at Counter'
+        }),
+      });
+
+      const orderData = await orderResponse.json();
+
+      if (!orderData.success) {
+        throw new Error(orderData.error || 'Failed to place order');
+      }
+
+      const token = orderData.token;
+      const order = orderData.order;
+
+      // Save order to localStorage
+      const { saveOrderToLocalStorage } = await import('@/lib/localStorage');
+      saveOrderToLocalStorage(order);
+
+      toast({
+        title: 'Order Placed!',
+        description: `Your order token is ${token}. Please pay at the counter when picking up.`,
+      });
+
+      // Clear cart and redirect
+      router.push(`/order/${encodeURIComponent(token)}/success`);
+    } catch (error) {
+      console.error('Failed to place order:', error);
+      toast({
+        title: 'Order Failed',
+        description: 'Failed to place order. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  }
+
   const handlePaymentSuccess = (orderId: string) => {
     setPaymentDialogOpen(false);
     // The cart is cleared in the payment dialog upon success
@@ -55,7 +101,7 @@ export function CartSidebar() {
 
   return (
     <>
-      <SheetContent className="flex w-full flex-col pr-0 sm:max-w-lg">
+      <SheetContent className="flex w-full flex-col pr-0 sm:max-w-xl">
         <SheetHeader className="px-6">
           <SheetTitle>Cart ({totalItems})</SheetTitle>
         </SheetHeader>
@@ -68,7 +114,7 @@ export function CartSidebar() {
                   return (
                     <div key={item.id} className="flex items-start gap-4">
                       <div className="relative h-20 w-20 rounded-md overflow-hidden">
-                          <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+                        <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium">{item.name}</h4>
@@ -94,52 +140,57 @@ export function CartSidebar() {
                 })}
               </div>
             </ScrollArea>
-             <div className="px-6 py-4 border-t space-y-4">
-                 <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Subtotal</span>
-                        <span>₹{subtotal.toFixed(2)}</span>
-                    </div>
-                    {appliedDiscount && (
-                    <div className="flex justify-between text-sm text-green-600">
-                        <span>Discount ({appliedDiscount.code} - {appliedDiscount.percentage}%)</span>
-                        <span>- ₹{(subtotal - total).toFixed(2)}</span>
-                    </div>
-                    )}
-                    <Separator className="my-2" />
-                    <div className="flex justify-between font-bold text-lg">
-                        <span>Total</span>
-                        <span>₹{total.toFixed(2)}</span>
-                    </div>
+            <div className="px-6 py-4 border-t space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span>₹{subtotal.toFixed(2)}</span>
                 </div>
+                {appliedDiscount && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>Discount ({appliedDiscount.code} - {appliedDiscount.percentage}%)</span>
+                    <span>- ₹{(subtotal - total).toFixed(2)}</span>
+                  </div>
+                )}
+                <Separator className="my-2" />
+                <div className="flex justify-between font-bold text-lg">
+                  <span>Total</span>
+                  <span>₹{total.toFixed(2)}</span>
+                </div>
+              </div>
             </div>
             <SheetFooter className="mt-auto flex flex-col gap-4 border-t bg-background px-6 py-4">
-                {!appliedDiscount ? (
-                    <div className="flex items-center gap-2">
-                        <Input 
-                            type="text" 
-                            placeholder="Discount code" 
-                            value={discountCode}
-                            onChange={(e) => setDiscountCode(e.target.value)}
-                            className="bg-muted border-none"
-                        />
-                        <Button onClick={handleApplyDiscount} disabled={!discountCode} variant="outline" className="shrink-0">Apply</Button>
-                    </div>
-                ) : (
-                    <div className="flex items-center justify-between rounded-md bg-green-100/50 text-green-700 p-2 text-sm">
-                        <div className="flex items-center gap-2 font-medium">
-                            <TicketPercent className="h-4 w-4"/>
-                            <span>Code "{appliedDiscount.code}" applied</span>
-                        </div>
-                      <Button variant="ghost" size="icon" className="h-6 w-6 text-green-700" onClick={removeDiscount}>
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                )}
-              
-              <Button size="lg" className="w-full" onClick={handleCheckout}>
-                Proceed to Checkout
-              </Button>
+              {!appliedDiscount ? (
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="text"
+                    placeholder="Discount code"
+                    value={discountCode}
+                    onChange={(e) => setDiscountCode(e.target.value)}
+                    className="bg-muted border-none"
+                  />
+                  <Button onClick={handleApplyDiscount} disabled={!discountCode} variant="outline" className="shrink-0">Apply</Button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between rounded-md bg-green-100/50 text-green-700 p-2 text-sm">
+                  <div className="flex items-center gap-2 font-medium">
+                    <TicketPercent className="h-4 w-4" />
+                    <span>Code "{appliedDiscount.code}" applied</span>
+                  </div>
+                  <Button variant="ghost" size="icon" className="h-6 w-6 text-green-700" onClick={removeDiscount}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 gap-3">
+                <Button size="lg" variant="outline" className="w-full" onClick={handlePayAtCounter}>
+                  Pay at Counter
+                </Button>
+                <Button size="lg" className="w-full" onClick={handleCheckout}>
+                  Pay Online
+                </Button>
+              </div>
             </SheetFooter>
           </>
         ) : (
@@ -148,16 +199,16 @@ export function CartSidebar() {
             <h3 className="font-semibold text-xl">Your cart is empty</h3>
             <p className="text-muted-foreground">Add items to your cart to get started.</p>
             <SheetClose asChild>
-                <Button>Start Ordering</Button>
+              <Button>Start Ordering</Button>
             </SheetClose>
           </div>
         )}
       </SheetContent>
       {isPaymentDialogOpen && (
-        <PaymentDialog 
-            isOpen={isPaymentDialogOpen} 
-            onClose={() => setPaymentDialogOpen(false)}
-            onPaymentSuccess={handlePaymentSuccess}
+        <PaymentDialog
+          isOpen={isPaymentDialogOpen}
+          onClose={() => setPaymentDialogOpen(false)}
+          onPaymentSuccess={handlePaymentSuccess}
         />
       )}
     </>

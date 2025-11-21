@@ -13,6 +13,7 @@ import { Logo } from '@/components/shared/Logo';
 import { ThemeToggle } from '@/components/shared/ThemeToggle';
 import { motion, useInView } from 'framer-motion';
 import { useMenuItems } from '@/hooks/useMenuItems';
+import { LiveTokenBoard } from '@/components/user/LiveTokenBoard';
 
 export default function Home() {
   const { items: menuItems, loading } = useMenuItems();
@@ -70,7 +71,10 @@ export default function Home() {
           </nav>
         </div>
       </header>
-      
+
+      {/* Live Token Board */}
+      <LiveTokenBoard />
+
       <main className="flex-1">
         {/* Hero Section */}
         <section
@@ -146,7 +150,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Featured Items Section */}
         <section className="py-24">
           <div className="container">
@@ -158,19 +162,19 @@ export default function Home() {
             </div>
             <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {loading ? (
-                 <p className="col-span-full text-center">Loading featured items...</p>
+                <p className="col-span-full text-center">Loading featured items...</p>
               ) : featuredItems.map((item, index) => (
                 <AnimatedCard key={item.id} index={index}>
                   <Card className="group flex flex-col overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <CardHeader className="p-0">
                       <div className="aspect-[3/2] relative w-full overflow-hidden">
-                          <Image
-                              src={item.imageUrl}
-                              alt={item.name}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
                       </div>
                     </CardHeader>
                     <CardContent className="p-4 flex-grow">
@@ -196,7 +200,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold font-headline">What People Are Saying</h2>
             </div>
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-               {[
+              {[
                 {
                   quote: `"The ordering process is so smooth! I love that I can just grab my food without waiting in line. The classic burger is a must-try!"`,
                   avatar: "https://i.pravatar.cc/150?img=1",

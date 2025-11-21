@@ -39,7 +39,7 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
       console.log('Cart items:', items);
       console.log('Total amount:', total);
       console.log('Applied discount:', appliedDiscount);
-      
+
       // Call the orders API instead of server action
       const orderResponse = await fetch('/api/orders', {
         method: 'POST',
@@ -61,8 +61,15 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
       }
 
       const orderId = orderData.orderId;
-      console.log('Order placed with ID:', orderId);
-      
+      const token = orderData.token;
+      const order = orderData.order;
+      console.log('Order placed with ID:', orderId, 'Token:', token);
+
+      // Save order to localStorage (client-side)
+      const { saveOrderToLocalStorage } = await import('@/lib/localStorage');
+      saveOrderToLocalStorage(order);
+      console.log('Order saved to localStorage:', orderId);
+
       console.log('Calling Razorpay API...');
       const response = await fetch('/api/razorpay', {
         method: 'POST',
@@ -78,7 +85,7 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
       console.log('Razorpay API response status:', response.status);
       const data = await response.json();
       console.log('Razorpay API response data:', data);
-      
+
       if (!response.ok) {
         throw new Error(data.error || 'Payment initialization failed');
       }
@@ -98,7 +105,7 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
         },
         handler: function (response: any) {
           console.log('Payment success handler called:', response);
-          handlePaymentSuccess(response, orderId);
+          handlePaymentSuccess(response, orderId, token);
         },
         modal: {
           ondismiss: function () {
@@ -113,12 +120,12 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
       };
 
       console.log('Opening Razorpay checkout...');
-      
+
       // Check if Razorpay is loaded
       if (!window.Razorpay) {
         throw new Error('Razorpay script not loaded');
       }
-      
+
       console.log('Razorpay script is loaded, creating instance...');
       const razorpay = new window.Razorpay(options);
       console.log('Razorpay instance created, opening checkout...');
@@ -134,7 +141,7 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
     }
   };
 
-  const handlePaymentSuccess = async (response: any, orderId: string) => {
+  const handlePaymentSuccess = async (response: any, orderId: string, token: string) => {
     try {
       // Verify payment on server
       const verifyResponse = await fetch('/api/razorpay/verify', {
@@ -152,13 +159,14 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
       const verifyData = await verifyResponse.json();
 
       if (verifyData.success) {
+        // Order stays in "In Queue" status - admin will update it
         toast({
           title: 'Payment Successful!',
-          description: `Your order #${orderId} has been placed.`,
+          description: `Your order token is ${token}. Please wait for your order to be ready.`,
         });
-        
+
         clearCart();
-        onPaymentSuccess(orderId);
+        onPaymentSuccess(token); // Pass token instead of orderId
       } else {
         throw new Error('Payment verification failed');
       }
@@ -201,10 +209,10 @@ export function PaymentDialog({ isOpen, onClose, onPaymentSuccess }: PaymentDial
             </div>
           </div>
           <DialogFooter>
-            <Button 
-              type="button" 
-              className="w-full" 
-              size="lg" 
+            <Button
+              type="button"
+              className="w-full"
+              size="lg"
               onClick={initializeRazorpayPayment}
               disabled={isLoading}
             >

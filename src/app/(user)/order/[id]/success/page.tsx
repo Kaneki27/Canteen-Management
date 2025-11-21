@@ -22,9 +22,9 @@ export default function OrderSuccessPage({ params }: { params: { id: string } })
           <p className="mt-4 text-muted-foreground">You can use this ID for pickup or any future inquiries.</p>
         </CardContent>
         <CardFooter className="flex-col gap-4">
-            <p className="flex items-center gap-2 text-muted-foreground"><PartyPopper className="h-5 w-5"/>Enjoy your meal!</p>
+          <p className="flex items-center gap-2 text-muted-foreground"><PartyPopper className="h-5 w-5" />Enjoy your meal!</p>
           <Button asChild size="lg" className="w-full">
-            <Link href="/menu">Continue Shopping</Link>
+            <Link href="/menu">Continue</Link>
           </Button>
         </CardFooter>
       </Card>
