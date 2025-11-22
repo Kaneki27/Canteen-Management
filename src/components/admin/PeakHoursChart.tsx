@@ -7,8 +7,8 @@ import { useMemo } from 'react';
 import { getHours } from 'date-fns';
 
 interface PeakHoursChartProps {
-    orders: Order[];
-    loading: boolean;
+  orders: Order[];
+  loading: boolean;
 }
 
 export function PeakHoursChart({ orders, loading }: PeakHoursChartProps) {
@@ -21,7 +21,7 @@ export function PeakHoursChart({ orders, loading }: PeakHoursChartProps) {
     }));
 
     orders.forEach(order => {
-      if (order.status === 'Completed') {
+      if (order.status === 'Ready') {
         const hour = getHours(new Date(order.date));
         hours[hour].orders += 1;
         hours[hour].revenue += order.total;
@@ -32,9 +32,9 @@ export function PeakHoursChart({ orders, loading }: PeakHoursChartProps) {
   }, [orders]);
 
   const peakHour = useMemo(() => {
-    return hourlyData.reduce((max, hour) => 
+    return hourlyData.reduce((max, hour) =>
       hour.orders > max.orders ? hour : max
-    , hourlyData[0]);
+      , hourlyData[0]);
   }, [hourlyData]);
 
   return (
@@ -53,7 +53,7 @@ export function PeakHoursChart({ orders, loading }: PeakHoursChartProps) {
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={hourlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis 
+                <XAxis
                   dataKey="label"
                   stroke="#888888"
                   fontSize={10}
@@ -76,10 +76,10 @@ export function PeakHoursChart({ orders, loading }: PeakHoursChartProps) {
                     return [value, name];
                   }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="orders" 
-                  stroke="hsl(var(--primary))" 
+                <Line
+                  type="monotone"
+                  dataKey="orders"
+                  stroke="hsl(var(--primary))"
                   strokeWidth={2}
                   dot={false}
                 />

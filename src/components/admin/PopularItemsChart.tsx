@@ -6,18 +6,18 @@ import { Order } from '@/lib/types';
 import { useMemo } from 'react';
 
 interface PopularItemsChartProps {
-    orders: Order[];
-    loading: boolean;
+  orders: Order[];
+  loading: boolean;
 }
 
 const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', '#8884d8', '#82ca9d', '#ffc658', '#ff8042'];
 
 export function PopularItemsChart({ orders, loading }: PopularItemsChartProps) {
   const popularItems = useMemo(() => {
-    const itemCount: Record<string, {name: string, count: number, revenue: number}> = {};
+    const itemCount: Record<string, { name: string, count: number, revenue: number }> = {};
 
     orders.forEach(order => {
-      if (order.status === 'Completed') {
+      if (order.status === 'Ready') {
         order.items.forEach(item => {
           if (!itemCount[item.id]) {
             itemCount[item.id] = { name: item.name, count: 0, revenue: 0 };
@@ -57,9 +57,9 @@ export function PopularItemsChart({ orders, loading }: PopularItemsChartProps) {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={popularItems} layout="vertical">
                 <XAxis type="number" />
-                <YAxis 
-                  type="category" 
-                  dataKey="name" 
+                <YAxis
+                  type="category"
+                  dataKey="name"
                   width={150}
                   fontSize={12}
                 />
