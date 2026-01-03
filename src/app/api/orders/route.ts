@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { saveOrder } from '@/lib/firestore';
 import type { Order } from '@/lib/types';
-import { generateDailyToken } from '@/lib/tokenGenerator';
+import { generateFirestoreToken } from '@/lib/firestoreTokenGenerator';
 
 // Simple order ID generation without AI dependency
 function generateOrderId(): string {
@@ -17,9 +17,9 @@ export async function POST(request: Request) {
 
     console.log('API: Placing order with:', { cartItems, total, discount, paymentMethod });
 
-    // Generate order ID and token
+    // Generate order ID and token using Firestore
     const orderId = generateOrderId();
-    const token = generateDailyToken();
+    const token = await generateFirestoreToken(); // Now uses Firestore for cross-device uniqueness
     console.log('API: Generated order ID:', orderId);
     console.log('API: Generated token:', token);
 

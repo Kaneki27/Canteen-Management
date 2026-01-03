@@ -1,6 +1,13 @@
 /**
- * Token Generator for Daily-Reset Order Tokens
+ * Token Generator for Daily-Reset Order Tokens (FALLBACK ONLY)
  * Generates sequential tokens (T001, T002, T003...) that reset daily
+ * 
+ * ⚠️ WARNING: This is a FALLBACK system only!
+ * Primary token generation now uses Firestore (firestoreTokenGenerator.ts)
+ * to ensure unique tokens across all devices.
+ * 
+ * This localStorage-based system can cause token collisions when
+ * orders are placed from different devices/browsers simultaneously.
  */
 
 const TOKEN_STORAGE_KEY = 'servesmart_token_counter';
@@ -66,8 +73,18 @@ function saveTokenCounter(counter: TokenCounter): void {
 /**
  * Generate next daily token (T001, T002, T003...)
  * Resets to T001 every day at midnight
+ * 
+ * ⚠️ DEPRECATED: This function is now used as a fallback only.
+ * The primary token generator is now Firestore-based (firestoreTokenGenerator.ts)
+ * which ensures unique tokens across all devices.
+ * 
+ * This localStorage-based generator can cause token collisions when
+ * orders are placed from different devices/browsers.
  */
 export function generateDailyToken(): string {
+    console.warn('⚠️ Using localStorage-based token generator (fallback mode)');
+    console.warn('⚠️ This may cause token collisions across different devices');
+
     const counter = getTokenCounter();
 
     // Increment counter
@@ -80,7 +97,7 @@ export function generateDailyToken(): string {
     const tokenNumber = String(counter.counter).padStart(3, '0');
     const token = `T${tokenNumber}`;
 
-    console.log(`Generated token: ${token} for date: ${counter.date}`);
+    console.log(`Generated localStorage token: ${token} for date: ${counter.date}`);
 
     return token;
 }
